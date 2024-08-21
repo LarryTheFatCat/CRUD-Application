@@ -15,6 +15,14 @@ export default function Home() {
       })
   }, []);
 
+  function deleteUser(id, e) {
+    e.stopPropagation();
+    axios.delete(`${api}/${id}`);
+    // remove user from state 
+    // if(user.id !== id) delete user
+    setUsers(users.filter(users => users.id !== id));
+  }
+
   return (
     <div className="p-10">
       <div className="grid sm:grid-cols-2">
@@ -32,12 +40,19 @@ export default function Home() {
           <div className="grid grid-rows-1 my-5">
             <div
               id="card"
-              className={` rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 ${toggle === user.id ? "h-20" : "h-10"}`}
+              className={`grid grid-cols-2 rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 ${toggle === user.id ? "h-20" : "h-10"}`}
               onClick={() => setToggle(toggle === user.id ? null : user.id)}
             >
-              <h1 className="text-md font-bold underline underline-offset-2 ml-5">
-                {user.name}
-              </h1>
+              <div className="grid col-span-1">
+                <h1 className="text-md font-bold underline underline-offset-2 ml-5">
+                  {user.name}
+                </h1>
+              </div>
+              <div className="grid col-span-1 justify-self-end">
+                <button onClick={(e) => deleteUser(user.id, e)} className="bg-red-500 text-white text-sm rounded-md hover:bg-red-700">
+                  Delete user
+                </button>
+              </div>
               <div className={`${toggle === user.id ? "block" : "hidden"}`}>
                 <p className="text-sm text-slate-900 mt-3 ml-5 self-center">
                   Created at: {user.createdAt.split("T")[0]}
