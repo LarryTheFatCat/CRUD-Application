@@ -25,7 +25,7 @@ export default function Home() {
   }
 
   return (
-    <div className="p-10">
+    <div className="sm:p-10">
       <div className="grid sm:grid-cols-2">
         <h1 className="grid max-sm:text-center col-span-1 text-4xl font-bold underline underline-offset-2 mb-10">
           Business Operations
