@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import HoverEditIcon from "../components/EditIcon";
 import axios from "axios";
 
 export default function Home() {
@@ -40,15 +41,18 @@ export default function Home() {
           <div className="grid grid-rows-1 my-5">
             <div
               id="card"
-              className={`grid grid-cols-2 rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 ${toggle === user.id ? "h-20" : "h-10"}`}
+              className={`grid grid-cols-1 sm:grid-cols-2 rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 max-sm:${toggle === user.id ? "h-20" : "h-10"}`}
               onClick={() => setToggle(toggle === user.id ? null : user.id)}
             >
+              <div className="w-5 absolute self-center top-1 left-1 sm:m-1">
+                <HoverEditIcon />
+              </div>
               <div className="grid col-span-1">
-                <h1 className="text-md font-bold underline underline-offset-2 ml-5">
+                <h1 className="text-sm sm:text-md font-bold underline underline-offset-2 ml-5">
                   ID:{user.id} {user.name}
                 </h1>
               </div>
-              <div className="grid col-span-1 justify-self-end">
+              <div className="grid col-span-1 sm:justify-self-end">
                 <button onClick={(e) => deleteUser(user.id, e)} className="bg-red-500 text-white text-sm rounded-md hover:bg-red-700">
                   Delete user
                 </button>
