@@ -38,6 +38,9 @@ export default function Home() {
           </Link>
         </button>
       </div>
+      <div>
+        Total Number Of Users: {users.length}
+      </div>
       {users.map((user) => (
         <div key={user.id}>
           <div className="grid grid-rows-1 my-5">
@@ -46,12 +49,12 @@ export default function Home() {
               className={`grid grid-cols-1 sm:grid-cols-2 rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 max-sm:${toggle === user.id ? "h-20" : "h-10"}`}
               onClick={() => setToggle(toggle === user.id ? null : user.id)}
             >
-              <div onClick={() => router.push(`${user.id}`)} className="w-5 absolute self-center top-1 left-1 sm:m-1">
+              <div onClick={() => router.push(`${user.id}`)} className="w-5 cursor-pointer absolute self-center top-1 left-1 sm:m-1">
                 <HoverEditIcon />
               </div>
               <div className="grid col-span-1">
                 <h1 className="text-sm sm:text-md font-bold underline underline-offset-2 ml-5">
-                  ID:{user.id} {user.name}
+                  {user.name}
                 </h1>
               </div>
               <div className="grid col-span-1 sm:justify-self-end">
