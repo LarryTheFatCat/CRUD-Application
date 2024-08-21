@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import HoverEditIcon from "../components/EditIcon";
 import axios from "axios";
@@ -6,6 +7,7 @@ import axios from "axios";
 export default function Home() {
   const [users, setUsers] = useState([]);
   const [toggle, setToggle] = useState(false);
+  const router = useRouter();
 
   const api = "https://66c5af77134eb8f434952e40.mockapi.io/api/v1/users";
   useEffect(() => {
@@ -44,7 +46,7 @@ export default function Home() {
               className={`grid grid-cols-1 sm:grid-cols-2 rounded-md shadow-md drop-shadow-2xl p-2 bg-slate-400 text-teal-900 max-sm:${toggle === user.id ? "h-20" : "h-10"}`}
               onClick={() => setToggle(toggle === user.id ? null : user.id)}
             >
-              <div className="w-5 absolute self-center top-1 left-1 sm:m-1">
+              <div onClick={() => router.push(`${user.id}`)} className="w-5 absolute self-center top-1 left-1 sm:m-1">
                 <HoverEditIcon />
               </div>
               <div className="grid col-span-1">
