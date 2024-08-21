@@ -45,7 +45,7 @@ export default function Home() {
             >
               <div className="grid col-span-1">
                 <h1 className="text-md font-bold underline underline-offset-2 ml-5">
-                  {user.name}
+                  ID:{user.id} {user.name}
                 </h1>
               </div>
               <div className="grid col-span-1 justify-self-end">
